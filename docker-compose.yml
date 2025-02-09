@@ -5,14 +5,14 @@ services:
     restart: always
 
   guacamole-db:
-    image: mariadb:11.4.4
+    image: mysql:8.0
     container_name: guacamole_db
     restart: always
     environment:
-      MARIADB_ROOT_PASSWORD: ${GUAC_DB_ROOT_PASSWORD}
-      MARIADB_DATABASE: ${GUAC_DB_NAME}
-      MARIADB_USER: ${GUAC_DB_USER}
-      MARIADB_PASSWORD: ${GUAC_DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${GUAC_DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${GUAC_DB_NAME}
+      MYSQL_USER: ${GUAC_DB_USER}
+      MYSQL_PASSWORD: ${GUAC_DB_PASSWORD}
     volumes:
       - ./guacamole_db_data:/var/lib/mysql
 
@@ -29,14 +29,14 @@ services:
       - MYSQL_DATABASE=${GUAC_DB_NAME}
       - MYSQL_USER=${GUAC_DB_USER}
       - MYSQL_PASSWORD=${GUAC_DB_PASSWORD}
-      - SAML_IDP_METADATA_URL=${SAML_IDP_METADATA_URL}
-      - SAML_ENTITY_ID=${SAML_ENTITY_ID}
-      - SAML_GROUP_ATTRIBUTE=${SAML_GROUP_ATTRIBUTE}
-      - SAML_CALLBACK_URL=${SAML_CALLBACK_URL}
-      - SAML_STRICT=${SAML_STRICT}
-      - SAML_DEBUG=${SAML_DEBUG}
-      - SAML_COMPRESS_REQUEST=${SAML_COMPRESS_REQUEST}
-      - SAML_COMPRESS_RESPONSE=${SAML_COMPRESS_RESPONSE}
+      #- SAML_IDP_METADATA_URL=${SAML_IDP_METADATA_URL}
+      #- SAML_ENTITY_ID=${SAML_ENTITY_ID}
+      #- SAML_GROUP_ATTRIBUTE=${SAML_GROUP_ATTRIBUTE}
+      #- SAML_CALLBACK_URL=${SAML_CALLBACK_URL}
+      #- SAML_STRICT=${SAML_STRICT}
+      #- SAML_DEBUG=${SAML_DEBUG}
+      #- SAML_COMPRESS_REQUEST=${SAML_COMPRESS_REQUEST}
+      #- SAML_COMPRESS_RESPONSE=${SAML_COMPRESS_RESPONSE}
     volumes:
       - ./guacamole:/config
       #- /home/ubuntu/guacamole-setup/metadata/google-idp-metadata.xml:/etc/guacamole/google-idp-metadata.xml:ro
@@ -44,14 +44,14 @@ services:
       - "8080:8080"
 
   npm-db:
-    image: mariadb:11.4.4
+    image: mysql:8.0
     container_name: npm_db
     restart: always
     environment:
-      MARIADB_ROOT_PASSWORD: ${NPM_DB_ROOT_PASSWORD}
-      MARIADB_DATABASE: ${NPM_DB_NAME}
-      MARIADB_USER: ${NPM_DB_USER}
-      MARIADB_PASSWORD: ${NPM_DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${NPM_DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${NPM_DB_NAME}
+      MYSQL_USER: ${NPM_DB_USER}
+      MYSQL_PASSWORD: ${NPM_DB_PASSWORD}
     volumes:
       - ./npm_db_data:/var/lib/mysql
 
